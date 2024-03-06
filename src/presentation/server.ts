@@ -24,7 +24,7 @@ export class Server {
         DbSequelize().then(async() => {
 
         }).catch((err) => {
-            //console.error(err)
+            console.error(err)
         })
     }
 }
