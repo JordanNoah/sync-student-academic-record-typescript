@@ -3,6 +3,7 @@ import { sequelize } from "../sequelize";
 
 interface OrganizationRow {
     id: number,
+    name: string,
     abbreviation: string,
     degree_abbreviation: string,
     origin: string,
@@ -20,6 +21,7 @@ interface OrganizationRow {
 
 export class OrganizationSequelize extends Model<OrganizationRow, Omit<OrganizationRow, 'id'>> {
     declare id: number
+    declare name: string
     declare abbreviation: string
     declare degree_abbreviation: string
     declare origin: string
@@ -36,20 +38,65 @@ export class OrganizationSequelize extends Model<OrganizationRow, Omit<Organizat
 }
 
 OrganizationSequelize.init({
-    id: number,
-    abbreviation: string,
-    degree_abbreviation: string,
-    origin: string,
-    rest_path: string,
-    token: string,
-    modality: string,
-    additional_data:any,
-    translations:any,
-    parent:number,
-    importance:number,
-    available:boolean,
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    abbreviation: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    degree_abbreviation: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    origin: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    rest_path: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    token: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    modality: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        validate:{
+            isIn:[['virtual','presentational']]
+        }
+    },
+    additional_data: {
+        type: DataTypes.JSON,
+        allowNull: true
+    },
+    translations: {
+        type: DataTypes.JSON,
+        allowNull: true
+    },
+    parent: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    importance: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    available: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true
+    }
 },{
     sequelize,
     timestamps: true,
+    paranoid: true,
     tableName: 'organization'
 })
