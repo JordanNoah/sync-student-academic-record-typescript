@@ -2,8 +2,8 @@ import {OrganizationSequelize} from "../../models/Organization";
 import OrganizationSeederData from "../data/organizationSeeder.data"
 import {OrganizationDto} from "../../../../domain/dtos/organization.dto";
 
-class OrganizationSeederExec {
-    static async up(){
+export class OrganizationSeederExec {
+    public async up(){
         const organizationSeeder = OrganizationSeederData;
         for (let i = 0; i < organizationSeeder.length; i++){
             const [error,organizationDto] = OrganizationDto.create(organizationSeeder[i])
@@ -32,7 +32,7 @@ class OrganizationSeederExec {
         }
     }
 
-    static async down(){
-        await OrganizationSequelize.drop()
+    public async down(){
+        await OrganizationSequelize.sync({force:true})
     }
 }

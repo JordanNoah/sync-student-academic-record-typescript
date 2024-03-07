@@ -4,16 +4,19 @@ import {EventReceivingQueueSequelize} from "./models/EventReceivingQueue";
 import {EventReceivingQueueLogSequelize} from "./models/EventReceivingQueueLog";
 import {StatusTransactionCatalogSequelize} from "./models/StatusTransactionCatalog";
 import {RequestToMoodleLogSequelize} from "./models/RequestToMoodleLog";
+import {OrganizationSeederExec} from "./seeders/execute/organizationSeeder.exec";
+import {MoodleWsFunctionSeederExec} from "./seeders/execute/moodleWsFunctionSeeder.exec";
 
 export const DbSequelize = (): Promise<void> => {
-    return new Promise((resolve, reject)=>{
-        OrganizationSequelize.sync({force:true}).catch(() => {reject()})
-        MoodleWsFunctionSequelize.sync({force:true}).catch(() => {reject()})
-        EventReceivingQueueSequelize.sync({force:true}).catch(() => {reject()})
-        EventReceivingQueueLogSequelize.sync({force:true}).catch(() => {reject()})
-        StatusTransactionCatalogSequelize.sync({force:true}).catch(() => {reject()})
-        RequestToMoodleLogSequelize.sync({force:true}).catch(() => {reject()})
+    return new Promise(async (resolve, reject)=>{
+        OrganizationSequelize.sync().catch(() => {reject()})
+        MoodleWsFunctionSequelize.sync().catch(() => {reject()})
+        EventReceivingQueueSequelize.sync().catch(() => {reject()})
+        EventReceivingQueueLogSequelize.sync().catch(() => {reject()})
+        StatusTransactionCatalogSequelize.sync().catch(() => {reject()})
+        RequestToMoodleLogSequelize.sync().catch(() => {reject()})
 
+        //associations
         EventReceivingQueueSequelize.hasMany(EventReceivingQueueLogSequelize,{foreignKey:'event_receiving_queue_id', as:'eventReceivingQueue'})
         EventReceivingQueueLogSequelize.belongsTo(EventReceivingQueueSequelize,{foreignKey:'event_receiving_queue_id', as:'eventReceivingQueue'})
 
@@ -28,5 +31,10 @@ export const DbSequelize = (): Promise<void> => {
 
         RequestToMoodleLogSequelize.belongsTo(MoodleWsFunctionSequelize,{foreignKey:'moodle_ws_function_id', as:'moodleWsFunction'})
         MoodleWsFunctionSequelize.hasMany(RequestToMoodleLogSequelize,{foreignKey:'moodle_ws_function_id', as:'moodleWsFunction'})
+
+        //seeders
+
+        await new OrganizationSeederExec().up()
+        await new MoodleWsFunctionSeederExec().up()
     })
 }

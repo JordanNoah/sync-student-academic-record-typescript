@@ -72,7 +72,7 @@ OrganizationSequelize.init({
         type: DataTypes.STRING,
         allowNull: true,
         validate:{
-            isIn:[['virtual','presentational']]
+            isIn:[['virtual','presential']]
         }
     },
     additional_data: {
