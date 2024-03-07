@@ -12,8 +12,8 @@ interface OrganizationRow {
     modality: string,
     additional_data:any,
     translations:any,
-    parent:number,
-    importance:number,
+    parent:number | null,
+    importance:number | null,
     available:boolean,
     createdAt?:Date,
     updatedAt?:Date
@@ -41,7 +41,8 @@ OrganizationSequelize.init({
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
+        allowNull:false
     },
     name: {
         type: DataTypes.STRING,
