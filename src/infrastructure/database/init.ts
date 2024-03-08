@@ -39,7 +39,7 @@ export const DbSequelize = (): Promise<void> => {
             await new MoodleWsFunctionSeederExec().up()
             resolve()
         }catch (e) {
-            reject()
+            reject(e)
         }
     })
 }

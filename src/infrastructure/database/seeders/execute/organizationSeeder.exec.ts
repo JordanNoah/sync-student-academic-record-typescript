@@ -1,12 +1,12 @@
 import {OrganizationSequelize} from "../../models/Organization";
 import OrganizationSeederData from "../data/organizationSeeder.data"
-import {OrganizationDto} from "../../../../domain/dtos/organization.dto";
+import {RegisterOrganizationDto} from "../../../../domain/dtos/organization.dto";
 
 export class OrganizationSeederExec {
     public async up(){
         const organizationSeeder = OrganizationSeederData;
         for (let i = 0; i < organizationSeeder.length; i++){
-            const [error,organizationDto] = OrganizationDto.create(organizationSeeder[i])
+            const [error,organizationDto] = RegisterOrganizationDto.create(organizationSeeder[i])
             if (error) throw Error(error)
             const organization = organizationDto!
             await OrganizationSequelize.findOrCreate({

@@ -1,4 +1,4 @@
-export class OrganizationDto {
+export class RegisterOrganizationDto {
     private constructor(
         public uuid: string,
         public name: string,
@@ -9,10 +9,11 @@ export class OrganizationDto {
         public website: string,
         public rest_path: string,
         public modality: string,
+        public additional_data: string,
         public translations: string
     ) {}
 
-    static create(object: {[key:string]:any}):[string?,OrganizationDto?]{
+    static create(object: {[key:string]:any}):[string?,RegisterOrganizationDto?]{
         const {
             uuid,
             name,
@@ -23,12 +24,15 @@ export class OrganizationDto {
             website,
             rest_path,
             modality,
+            additional_data,
             translations
         } = object
 
+        if (!abbreviation) return ['Missing abbreviation in structure']
+
         return [
             undefined,
-            new OrganizationDto(
+            new RegisterOrganizationDto(
                 uuid,
                 name,
                 fullname,
@@ -38,6 +42,7 @@ export class OrganizationDto {
                 website,
                 rest_path,
                 modality,
+                additional_data,
                 translations
             )
         ]

@@ -8,6 +8,7 @@ const organizations = [{
     website: "https://campus.funiber.org",
     rest_path: "/webservice/rest/server.php",
     modality: 'virtual',
+    additional_data: '',
     translations: JSON.stringify({
         en_US: "Iberoamerican University Foundation",
         pt_BR: "Fundação Universitária Iberoamericana",
@@ -29,6 +30,7 @@ const organizations = [{
         website: "https://campus.uneatlantico.es",
         rest_path: "/webservice/rest/server.php",
         modality: 'virtual',
+        additional_data: '',
         translations: JSON.stringify({
             en_US: "European University of the Atlantic",
             pt_BR: "Universidade Europeia do Atlântico",
@@ -50,6 +52,7 @@ const organizations = [{
         website: "https://campus.uneatlantico.es",
         rest_path: "/webservice/rest/server.php",
         modality: 'presential',
+        additional_data: '',
         translations: JSON.stringify({
             en_US: "European University of the Atlantic",
             pt_BR: "Universidade Europeia do Atlântico",
@@ -71,6 +74,7 @@ const organizations = [{
         website: "https://campus.unib.org",
         rest_path: "/webservice/rest/server.php",
         modality: 'virtual',
+        additional_data: '',
         translations: JSON.stringify({
             en_US: "International Ibero-American University",
             pt_BR: "Universidade Internacional Iberoamericana",
@@ -89,6 +93,7 @@ const organizations = [{
         website: "https://campus.funiber.org",
         rest_path: "/webservice/rest/server.php",
         modality: 'virtual',
+        additional_data: '',
         translations: JSON.stringify({
             en_US: "International Ibero-American University",
             pt_BR: "Universidade Internacional Iberoamericana",
@@ -107,6 +112,7 @@ const organizations = [{
         website: "https://campus.unincol.edu.co",
         rest_path: "/webservice/rest/server.php",
         modality: 'virtual',
+        additional_data: '',
         translations: JSON.stringify({
             en_US: "International University Foundation of Colombia",
             pt_PT: "Fundação Universitária Internacional da Colômbia",
@@ -125,6 +131,7 @@ const organizations = [{
         website: "https://campus.unic.co.ao",
         rest_path: "/webservice/rest/server.php",
         modality: 'virtual',
+        additional_data: '',
         translations: JSON.stringify({
             en_US: "International University of Cuanza",
             es_ES: "Universidad Internacional de Cuanza"
@@ -142,6 +149,7 @@ const organizations = [{
         website: "https://campus.uniromana.do",
         rest_path: "/webservice/rest/server.php",
         modality: 'virtual',
+        additional_data: '',
         translations: JSON.stringify({
             en_US: "University of la Romana",
             es_ES: "Universidad de la Romana"
