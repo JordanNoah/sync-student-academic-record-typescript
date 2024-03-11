@@ -12,6 +12,10 @@ export class UpdateMoodleWsFunctionDto {
             abbreviation
         } = object
 
+        if(!id) return ['Missing id key']
+        if(!moodleFunction) return ['Missing moodleFunction key']
+        if(!abbreviation) return ['Missing abbreviation key']
+
         return [
             undefined,
             new UpdateMoodleWsFunctionDto(

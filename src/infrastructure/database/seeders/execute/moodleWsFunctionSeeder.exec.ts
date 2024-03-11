@@ -12,11 +12,11 @@ export class MoodleWsFunctionSeederExec {
             const moodleFunction = moodleWsFunctionDto!
             await MoodleWsFunctionSequelize.findOrCreate({
                 where:{
-                    function:moodleFunction.moodleFunction
+                    wsFunction:moodleFunction.moodleFunction
                 },
                 defaults:{
                     abbreviation:moodleFunction.abbreviation,
-                    function:moodleFunction.moodleFunction
+                    wsFunction:moodleFunction.moodleFunction
                 }
             })
         }

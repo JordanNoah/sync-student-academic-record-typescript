@@ -1,5 +1,7 @@
 import { Model, DataTypes } from "sequelize";
 import { sequelize } from "../sequelize";
+import {EventReceivingQueueSequelize} from "./EventReceivingQueue";
+import {StatusTransactionCatalogSequelize} from "./StatusTransactionCatalog";
 
 interface EventReceivingQueueLogRow {
     id: number,
@@ -26,11 +28,19 @@ EventReceivingQueueLogSequelize.init({
     },
     event_receiving_queue_id:{
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+            model: EventReceivingQueueSequelize,
+            key:'id'
+        }
     },
     status_transaction_catalog_id:{
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+            model: StatusTransactionCatalogSequelize,
+            key: 'id'
+        }
     }
 },{
     sequelize,
@@ -38,3 +48,9 @@ EventReceivingQueueLogSequelize.init({
     paranoid: true,
     tableName: 'event_receiving_queue_log'
 })
+
+EventReceivingQueueSequelize.hasMany(EventReceivingQueueLogSequelize,{foreignKey:'event_receiving_queue_id', as:'eventReceivingQueue'})
+EventReceivingQueueLogSequelize.belongsTo(EventReceivingQueueSequelize,{foreignKey:'event_receiving_queue_id', as:'eventReceivingQueue'})
+
+StatusTransactionCatalogSequelize.hasMany(EventReceivingQueueLogSequelize,{foreignKey:'status_transaction_catalog_id', as:'statusTransactionCatalog'})
+EventReceivingQueueLogSequelize.belongsTo(StatusTransactionCatalogSequelize,{foreignKey:'status_transaction_catalog_id', as: 'statusTransactionCatalog'})

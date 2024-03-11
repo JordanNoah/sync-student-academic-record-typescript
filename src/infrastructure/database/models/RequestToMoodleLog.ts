@@ -1,5 +1,8 @@
 import { Model, DataTypes } from "sequelize";
 import { sequelize } from "../sequelize";
+import {EventReceivingQueueLogSequelize} from "./EventReceivingQueueLog";
+import {MoodleWsFunctionSequelize} from "./MoodleWsFunction";
+import {OrganizationSequelize} from "./Organization";
 
 interface RequestToMoodleLogRow {
     id: number,
@@ -46,15 +49,27 @@ RequestToMoodleLogSequelize.init({
     },
     moodle_ws_function_id:{
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references:{
+            model:MoodleWsFunctionSequelize,
+            key:'id'
+        }
     },
     event_receiving_queue_log_id:{
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references:{
+            model:EventReceivingQueueLogSequelize,
+            key:'id'
+        }
     },
     organization_id:{
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references:{
+            model:OrganizationSequelize,
+            key:'id'
+        }
     }
 },{
     sequelize,
@@ -62,3 +77,12 @@ RequestToMoodleLogSequelize.init({
     paranoid: true,
     tableName: 'request_to_moodle_log'
 })
+
+RequestToMoodleLogSequelize.belongsTo(EventReceivingQueueLogSequelize,{foreignKey:'event_receiving_queue_log_id', as:'receivingQueueLog'})
+EventReceivingQueueLogSequelize.hasMany(RequestToMoodleLogSequelize,{foreignKey:'event_receiving_queue_log_id',as:'receivingQueueLog'})
+
+RequestToMoodleLogSequelize.belongsTo(MoodleWsFunctionSequelize,{foreignKey:'moodle_ws_function_id', as:'moodleWsFunction'})
+MoodleWsFunctionSequelize.hasMany(RequestToMoodleLogSequelize,{foreignKey:'moodle_ws_function_id', as:'moodleWsFunction'})
+
+RequestToMoodleLogSequelize.belongsTo(OrganizationSequelize,{foreignKey:'organization_id', as:'organization'})
+OrganizationSequelize.hasMany(RequestToMoodleLogSequelize,{foreignKey:'organization_id', as:'organization'})
