@@ -16,6 +16,8 @@ export class OrganizationRoutes {
         router.get('/id/:id', controller.getById)
         router.get('/', controller.getAll)
         router.delete('/id/:id', controller.deleteById)
+        router.put('/enable', controller.enable)
+        router.put('/disable', controller.disable)
 
         return router
     }

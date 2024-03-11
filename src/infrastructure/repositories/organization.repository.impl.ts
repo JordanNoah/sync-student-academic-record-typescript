@@ -23,4 +23,12 @@ export class OrganizationRepositoryImpl implements OrganizationRepository {
     deleteById(id: number): Promise<OrganizationEntity> {
         return this.organizationDatasource.deleteById(id)
     }
+
+    disable(id: number): Promise<OrganizationEntity> {
+        return this.organizationDatasource.disable(id)
+    }
+
+    enable(id: number): Promise<OrganizationEntity> {
+        return this.organizationDatasource.enable(id)
+    }
 }

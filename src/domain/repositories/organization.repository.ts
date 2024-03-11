@@ -6,4 +6,6 @@ export abstract class OrganizationRepository {
     abstract getById(id: number): Promise<OrganizationEntity | null>
     abstract getAll(): Promise<OrganizationEntity[]>
     abstract deleteById(id: number): Promise<OrganizationEntity>
+    abstract enable(id: number): Promise<OrganizationEntity>
+    abstract disable(id: number): Promise<OrganizationEntity>
 }

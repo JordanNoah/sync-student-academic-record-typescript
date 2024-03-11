@@ -29,6 +29,9 @@ export class RegisterOrganizationDto {
         } = object
 
         if (!abbreviation) return ['Missing abbreviation in structure']
+        if (!modality) return ['Missing modality in structure']
+        if (!name) return ['Missing name in structure']
+
 
         return [
             undefined,

@@ -1,8 +1,5 @@
 import express, {Router} from "express";
 import {DbSequelize} from "../infrastructure/database/init";
-import {Moodle} from "../domain/client/moodle";
-import {CoreUserGetUserDto} from "../domain/dtos/moodle/coreUserGetUser.dto";
-import {CoreCourseGetCoursesByFieldDto} from "../domain/dtos/moodle/coreCourseGetCoursesByField.dto";
 import * as http from "http";
 
 interface Options {

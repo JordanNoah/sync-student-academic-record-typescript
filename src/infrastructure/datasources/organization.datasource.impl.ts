@@ -42,6 +42,7 @@ export class OrganizationDatasourceImpl implements OrganizationDatasource {
 
             return organizationDb
         } catch (error) {
+            console.log(error)
             if(error instanceof CustomError){
                 throw error
             }
@@ -88,6 +89,60 @@ export class OrganizationDatasourceImpl implements OrganizationDatasource {
                     id:id
                 }
             })
+            return organization
+        } catch (error) {
+            if(error instanceof CustomError){
+                throw error
+            }
+            throw CustomError.internalSever()
+        }
+    }
+
+    async disable(id: number): Promise<OrganizationEntity> {
+        try {
+            const organization = await this.getById(id)
+
+            if (!organization) {
+                throw CustomError.notFound('Organization not found')
+            }
+
+            await OrganizationSequelize.update({
+                available: false
+            },{
+                where:{
+                    id:id
+                }
+            })
+
+            organization.available = false
+
+            return organization
+        } catch (error) {
+            if(error instanceof CustomError){
+                throw error
+            }
+            throw CustomError.internalSever()
+        }
+    }
+
+    async enable(id: number): Promise<OrganizationEntity> {
+        try {
+            const organization = await this.getById(id)
+
+            if (!organization) {
+                throw CustomError.notFound('Organization not found')
+            }
+
+            await OrganizationSequelize.update({
+                available: true
+            },{
+                where:{
+                    id:id
+                }
+            })
+
+            organization.available = true
+
             return organization
         } catch (error) {
             if(error instanceof CustomError){
