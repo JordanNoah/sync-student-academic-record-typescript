@@ -4,7 +4,6 @@ export class MoodleWsFunctionEntity {
         public wsFunction: string,
         public abbreviation: string,
         public createdAt: Date,
-        public updatedAt: Date,
-        public deletedAt: Date
+        public updatedAt: Date
     ) {}
 }

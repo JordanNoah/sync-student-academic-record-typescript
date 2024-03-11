@@ -1,5 +1,5 @@
 import {OrganizationDatasource} from "../../domain/datasources/organization.datasource";
-import {RegisterOrganizationDto} from "../../domain/dtos/organization.dto";
+import {RegisterOrganizationDto} from "../../domain/dtos/registerOrganization.dto";
 import {OrganizationEntity} from "../../domain/entities/organization.entity";
 import {CustomError} from "../../domain/errors/custom.error";
 import {OrganizationSequelize} from "../database/models/Organization";
@@ -42,7 +42,6 @@ export class OrganizationDatasourceImpl implements OrganizationDatasource {
 
             return organizationDb
         } catch (error) {
-            console.log(error)
             if(error instanceof CustomError){
                 throw error
             }

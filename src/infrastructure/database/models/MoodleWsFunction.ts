@@ -3,7 +3,7 @@ import { sequelize } from "../sequelize";
 
 interface MoodleWsFunctionRow {
     id: number,
-    function: string,
+    wsFunction: string,
     abbreviation: string,
     createdAt?: Date,
     updatedAt?: Date
@@ -11,7 +11,7 @@ interface MoodleWsFunctionRow {
 
 export class MoodleWsFunctionSequelize extends Model<MoodleWsFunctionRow,Omit<MoodleWsFunctionRow, 'id'>> {
     declare id: number
-    declare function: string
+    declare wsFunction: string
     declare abbreviation: string
     declare readonly createdAt: Date
     declare readonly updatedAt: Date
@@ -24,7 +24,7 @@ MoodleWsFunctionSequelize.init({
         primaryKey: true,
         autoIncrement: true
     },
-    function:{
+    wsFunction:{
         type: DataTypes.STRING,
         allowNull: false
     },

@@ -1,6 +1,6 @@
 import {OrganizationSequelize} from "../../models/Organization";
 import OrganizationSeederData from "../data/organizationSeeder.data"
-import {RegisterOrganizationDto} from "../../../../domain/dtos/organization.dto";
+import {RegisterOrganizationDto} from "../../../../domain/dtos/registerOrganization.dto";
 
 export class OrganizationSeederExec {
     public async up(){

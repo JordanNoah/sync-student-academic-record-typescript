@@ -1,4 +1,4 @@
-import {RegisterOrganizationDto} from "../dtos/organization.dto";
+import {RegisterOrganizationDto} from "../dtos/registerOrganization.dto";
 import {OrganizationEntity} from "../entities/organization.entity";
 
 export abstract class OrganizationDatasource {

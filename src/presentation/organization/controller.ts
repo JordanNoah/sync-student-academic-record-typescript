@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import {OrganizationRepository} from "../../domain/repositories/organization.repository";
-import {RegisterOrganizationDto} from "../../domain/dtos/organization.dto";
+import {RegisterOrganizationDto} from "../../domain/dtos/registerOrganization.dto";
 import organizations from "../../infrastructure/database/seeders/data/organizationSeeder.data";
 
 export class OrganizationController {
@@ -9,7 +9,6 @@ export class OrganizationController {
     ) {}
 
     createSignature = (req: Request, res: Response) => {
-        console.log(req.body)
         const [error,registerOrganizationDto] = RegisterOrganizationDto.create(req.body)
         if (error) return res.status(400).json({error})
         this.organizationRepository.register(registerOrganizationDto!).then((organization) => {

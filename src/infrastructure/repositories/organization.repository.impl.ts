@@ -1,6 +1,6 @@
 import {OrganizationRepository} from "../../domain/repositories/organization.repository";
 import {OrganizationDatasource} from "../../domain/datasources/organization.datasource";
-import {RegisterOrganizationDto} from "../../domain/dtos/organization.dto";
+import {RegisterOrganizationDto} from "../../domain/dtos/registerOrganization.dto";
 import {OrganizationEntity} from "../../domain/entities/organization.entity";
 
 export class OrganizationRepositoryImpl implements OrganizationRepository {
