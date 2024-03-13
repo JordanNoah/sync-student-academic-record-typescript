@@ -1,10 +1,10 @@
 export class AcademicTermDto {
     constructor(
-        referenceId: number,
-        schoolPeriod: string,
-        studyModel: string,
-        startedAt: Date,
-        finishedAt: Date
+        public referenceId: number,
+        public schoolPeriod: string,
+        public studyModel: string,
+        public startedAt: Date,
+        public finishedAt: Date
     ) {}
     static create(object:{[key:string]:any}):[string?,AcademicTermDto?]{
         const {

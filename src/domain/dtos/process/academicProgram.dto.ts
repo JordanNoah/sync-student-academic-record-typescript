@@ -20,6 +20,9 @@ export class AcademicProgramDto {
             version
         } = object
 
+        if(!uuid) return ['Missing uuid in academic_program structure']
+        if(!version) return ['Missing version in academic_program structure']
+
         return [
             undefined,
             new AcademicProgramDto(
